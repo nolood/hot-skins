@@ -10,7 +10,11 @@ export default {
       borderMain: '#3D4554',
       borderSecondary: '#272E3B',
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'home-bg': "url('/src/assets/home-bg.jpg')",
+      },
+    },
   },
   plugins: [],
 };

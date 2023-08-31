@@ -1,3 +1,4 @@
+import Footer from '@/components/layout/footer/Footer';
 import Header from '@/components/layout/header/Header';
 import Providers from '@/providers/Providers';
 
@@ -6,6 +7,7 @@ const MainLayout = ({ children }: { children: React.ReactNode }) => {
     <Providers>
       <Header />
       {children}
+      <Footer />
     </Providers>
   );
 };

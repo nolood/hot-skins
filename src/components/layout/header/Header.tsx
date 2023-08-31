@@ -1,14 +1,14 @@
-import MainLogo from '@/components/common/logos/MainLogo';
+import Logo from '@/components/common/logo/Logo';
 import { NavbarItems } from '@/constants/NavbarItems';
 import { Down } from '@icon-park/react';
 const Header = () => {
   return (
-    <section className='section bg-bgMain'>
-      <div className='container'>
+    <section className='section bg-bgMain h-[73px] border-solid border-b border-borderSecondary'>
+      <div className='container absolute left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
             <div className='flex items-center gap-4 '>
-              <MainLogo />
+              <Logo />
               <h2 className='text-textMain text-2xl tracking-wider'>
                 <span className='font-bold'>Hot</span>
                 <span className='font-thin'>Skins</span>

@@ -1,4 +1,4 @@
-const MainLogo = () => {
+const Logo = () => {
   return (
     <svg width='45' height='41' viewBox='0 0 45 41' fill='none' xmlns='http://www.w3.org/2000/svg'>
       <path
@@ -23,4 +23,4 @@ const MainLogo = () => {
   );
 };
 
-export default MainLogo;
+export default Logo;
