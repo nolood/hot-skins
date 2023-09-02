@@ -1,6 +1,6 @@
-import '@/styles/globals.scss';
-import AppRouter from './components/AppRouter';
+import AppRouter from './AppRouter';
 import MainLayout from './layouts/MainLayout';
+import './styles/globals.scss';
 
 function App() {
   return (

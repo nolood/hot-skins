@@ -1,6 +1,10 @@
-import HomePage from '@/pages/HomePage';
-import { RouteType } from '@/types/RouteType';
+import HomePage from '@/pages/home/HomePage';
 import { HOME_ROUTE } from './paths';
+
+export type RouteType = {
+  path: string;
+  Component: () => JSX.Element;
+};
 
 export const publicRoutes: RouteType[] = [
   {

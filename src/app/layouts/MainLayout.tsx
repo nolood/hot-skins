@@ -1,11 +1,13 @@
-import Header from '@/components/layout/header/Header';
-import Providers from '@/providers/Providers';
+import Footer from '@/widgets/footer/Footer';
+import Header from '@/widgets/header/Header';
+import Providers from '@/app/providers/Providers';
 
 const MainLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Providers>
       <Header />
       {children}
+      <Footer />
     </Providers>
   );
 };

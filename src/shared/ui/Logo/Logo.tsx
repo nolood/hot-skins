@@ -1,6 +1,12 @@
-const MainLogo = () => {
+const Logo = ({ size = 45 }: { size?: number }) => {
   return (
-    <svg width='45' height='41' viewBox='0 0 45 41' fill='none' xmlns='http://www.w3.org/2000/svg'>
+    <svg
+      width={size}
+      height={size}
+      viewBox='0 0 45 41'
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
       <path
         d='M31.5698 18.3495C30.7845 22.9694 35.3307 32.6773 30.0346 34.5201C24.7385 36.363 22.3904 39.5177 20.8479 32.9447C20.1276 29.8751 19.8058 24.1348 20.8479 21.489C24.0116 21.1983 25.7383 18.7144 27.6445 17.7063C32.0349 15.3843 32.3256 17.7063 31.5698 18.3495Z'
         fill='#EC9630'
@@ -23,4 +29,4 @@ const MainLogo = () => {
   );
 };
 
-export default MainLogo;
+export default Logo;
