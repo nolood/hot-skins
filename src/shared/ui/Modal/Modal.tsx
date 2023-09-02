@@ -21,10 +21,10 @@ const Modal: FC<ModalProps> = ({ open, setOpen, children }) => {
           leaveFrom='opacity-100'
           leaveTo='opacity-0'
         >
-          <Dialog.Panel className='flex items-center justify-center bg-bgMain h-full w-full relative'>
+          <Dialog.Panel className='flex items-center justify-center bg-main h-full w-full relative'>
             {children}
             <button
-              className='absolute top-4 right-4 w-7 h-7 bg-borderMain rounded-full flex items-center justify-center text-textMain text-sm'
+              className='absolute top-4 right-4 w-7 h-7 bg-disabled rounded-full flex items-center justify-center text-textMain text-sm'
               onClick={() => setOpen(false)}
             >
               <Close />

@@ -1,9 +1,9 @@
-import Logo from '@/components/common/logo/Logo';
-import { NavbarItems } from '@/constants/NavbarItems';
+import { Button, Logo, Russia } from '@/shared/ui';
+import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
 import { Down } from '@icon-park/react';
 const Header = () => {
   return (
-    <section className='section bg-bgMain h-[73px] border-solid border-b border-borderSecondary'>
+    <section className='section h-[73px] bg-substrate'>
       <div className='container absolute left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
@@ -23,13 +23,12 @@ const Header = () => {
             </ul>
           </div>
           <div className='flex items-center'>
-            <div className='flex items-center text-textMain uppercase gap-4 text-lg rounded-3xl border-solid border border-borderMain py-1 px-4'>
+            <div className='flex items-center text-textMain uppercase gap-4 text-lg rounded-3xl border-solid border border-borderMain py-1 px-4 font-regular'>
+              <Russia />
               ru
               <Down className='text-textSecondary' />
             </div>
-            <button className='ml-8 bg-btnMain rounded-3xl text-bgMain font-bold text-md py-2 px-6'>
-              Войти
-            </button>
+            <Button title='Войти' className='ml-8 text-lg py-2 px-6' />
           </div>
         </div>
       </div>

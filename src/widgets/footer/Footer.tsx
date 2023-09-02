@@ -1,8 +1,8 @@
-import { NavbarItems } from '@/constants/NavbarItems';
+import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
 
 const Footer = () => {
   return (
-    <section className='section bg-bgMain h-[48px] border-solid border-t border-borderSecondary'>
+    <section className='section bg-substrate h-[48px]'>
       <div className='container'>
         <div className='flex justify-between items-center py-[11px]'>
           <p className='text-textSecondary text-md'>Copyright &copy; Skincash.ru</p>
