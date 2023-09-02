@@ -1,7 +1,12 @@
-import { ModalProps } from '@/types/props/ModalProps';
 import { Dialog, Transition } from '@headlessui/react';
 import { Close } from '@icon-park/react';
 import { FC, Fragment } from 'react';
+
+interface ModalProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  children: React.ReactNode;
+}
 
 const Modal: FC<ModalProps> = ({ open, setOpen, children }) => {
   return (
