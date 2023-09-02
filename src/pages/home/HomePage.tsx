@@ -1,4 +1,5 @@
 import { Button, Modal } from '@/shared/ui';
+import { RegForm } from '@/widgets/auth-form';
 import { useState } from 'react';
 
 const HomePage = () => {
@@ -16,7 +17,7 @@ const HomePage = () => {
             onClick={() => setIsOpen(true)}
           />
           <Modal open={isOpen} setOpen={setIsOpen}>
-            kek
+            <RegForm />
           </Modal>
         </div>
       </div>
