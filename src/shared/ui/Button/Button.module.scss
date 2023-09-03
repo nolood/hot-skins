@@ -1,7 +1,7 @@
 .primaryEffects {
   &:hover,
   &:focus {
-    @apply bg-hover text-accent border-accent border-solid border;
+    @apply bg-hover text-accent outline-accent outline-2;
   }
 }
 
