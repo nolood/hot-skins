@@ -1,5 +1,5 @@
 import { Button, Modal } from '@/shared/ui';
-import { RegForm } from '@/widgets/auth-form';
+import { RegisterScreen } from '@/widgets/register-screen';
 import { useState } from 'react';
 
 const HomePage = () => {
@@ -15,9 +15,10 @@ const HomePage = () => {
             title='Зарегистрироваться'
             className='py-5 px-12'
             onClick={() => setIsOpen(true)}
+            variant='primary'
           />
           <Modal open={isOpen} setOpen={setIsOpen}>
-            <RegForm />
+            <RegisterScreen />
           </Modal>
         </div>
       </div>

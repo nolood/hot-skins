@@ -15,7 +15,7 @@ const Input: FC<InputProps> = ({ label, name, type, placeholder }) => {
         type={type}
         name={name}
         placeholder={placeholder}
-        className='bg-main text-textMain border border-solid border-border outline-none rounded-[50px] px-5 py-3 w-full'
+        className='bg-main text-textMain border border-solid border-border outline-none rounded-[50px] px-5 py-3 w-full focus:outline-accent outline-solid outline'
       />
     </div>
   );

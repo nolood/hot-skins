@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import styles from './Button.module.scss';
 
 interface IButtonProps {
   title: string;
@@ -8,6 +9,7 @@ interface IButtonProps {
   info?: string;
   onClick?: () => void;
   className?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
 const Button: FC<IButtonProps> = ({
@@ -18,15 +20,16 @@ const Button: FC<IButtonProps> = ({
   info,
   onClick,
   className,
+  type,
 }) => {
   const combineClassNames = () => {
     const defaultClassName =
-      'rounded-[50px] font-medium text-lg hover:opacity-80 ease-linear duration-300 focus:opacity-80 outline-none';
+      'rounded-[50px] font-medium text-lg ease-linear duration-300 outline-none';
     if (variant === 'primary' && !disabled) {
-      return `${defaultClassName} bg-accent text-main ${className}`;
+      return `${defaultClassName} bg-accent text-main ${styles.primaryEffects} ${className}`;
     }
     if (variant === 'secondary' && !disabled) {
-      return `${defaultClassName} bg-transparent text-accent border-solid border-accent border ${className}`;
+      return `${defaultClassName} bg-transparent text-accent border-solid border-accent border ${styles.secondaryEffects} ${className}`;
     }
     if (variant === 'primary' && disabled) {
       return `${defaultClassName} bg-disabled text-textSecondary cursor-not-allowed ${className}`;
@@ -38,7 +41,7 @@ const Button: FC<IButtonProps> = ({
   };
 
   return (
-    <button onClick={onClick} disabled={disabled} className={combineClassNames()}>
+    <button onClick={onClick} disabled={disabled} className={combineClassNames()} type={type}>
       {icon}
       {title}
       {info}

@@ -10,6 +10,7 @@ export default {
       disabled: '#425170',
       textMain: '#ffffff',
       textSecondary: '#FFFFFF80',
+      hover: '#F4C03800',
     },
     extend: {
       backgroundImage: {
