@@ -5,7 +5,7 @@ import { useState } from 'react';
 const HomePage = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <section className='section bg-home-bg h-[calc(100vh-73px-48px)] bg-center bg-no-repeat bg-cover'>
+    <section className='section bg-home-bg h-[calc(100vh-76px-48px)] bg-center bg-no-repeat bg-cover'>
       <div className='container'>
         <div className='pt-[118px]'>
           <h1 className='text-textMain text-6xl font-bold w-[700px] mb-10'>

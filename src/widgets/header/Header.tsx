@@ -1,9 +1,13 @@
-import { Button, Logo, Russia } from '@/shared/ui';
+import { Button, Logo, Modal, Russia } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
 import { Down } from '@icon-park/react';
+import { useState } from 'react';
+import LoginScreen from '../login-screen/ui/LoginScreen';
+
 const Header = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
-    <section className='section h-[73px] bg-substrate'>
+    <section className='section h-[76px] bg-substrate'>
       <div className='container absolute left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
@@ -28,9 +32,16 @@ const Header = () => {
               ru
               <Down className='text-textSecondary' />
             </div>
-            <Button title='Войти' className='ml-8 text-lg py-2 px-6' />
+            <Button
+              onClick={() => setIsOpen(true)}
+              title='Войти'
+              className='ml-8 text-lg py-2 px-6'
+            />
           </div>
         </div>
+        <Modal open={isOpen} setOpen={setIsOpen}>
+          <LoginScreen />
+        </Modal>
       </div>
     </section>
   );
