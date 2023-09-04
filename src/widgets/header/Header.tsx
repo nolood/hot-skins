@@ -2,7 +2,7 @@ import { Button, Logo, Modal, Russia } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
 import { Down } from '@icon-park/react';
 import { useState } from 'react';
-import LoginScreen from '../login-screen/ui/LoginScreen';
+import { LoginScreen } from '..';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

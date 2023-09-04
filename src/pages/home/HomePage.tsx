@@ -1,5 +1,5 @@
 import { Button, Modal } from '@/shared/ui';
-import { RegisterScreen } from '@/widgets/register-screen';
+import { RegisterScreen } from '@/widgets';
 import { useState } from 'react';
 
 const HomePage = () => {
