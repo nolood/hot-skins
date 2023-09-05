@@ -1,5 +1,4 @@
-// import { createEffect, createStore } from 'effector';
-// import { api } from './api';
+// import { createStore } from 'effector';
 
 // type UserStore = {
 //   id: number;
@@ -8,7 +7,3 @@
 // };
 
 // const $user = createStore<UserStore | null>(null);
-
-// const getUserFx = createEffect(async () => {
-//   api.get('users');
-// });
