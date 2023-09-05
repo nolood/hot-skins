@@ -1,8 +1,23 @@
-import { Route, Routes } from 'react-router-dom';
+import { $isAuth, setIsAuth } from '@/shared/api/auth';
+import { getToken } from '@/shared/lib';
+import { useStore } from 'effector-react';
+import { useEffect } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { authRoutes, publicRoutes } from './routes/routes';
 
 const AppRouter = () => {
-  const isAuth = true;
+  const isAuth = useStore($isAuth);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+      navigate('/');
+    }
+  }, []);
   return (
     <Routes>
       {isAuth &&

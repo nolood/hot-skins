@@ -11,6 +11,7 @@ export default {
       textMain: '#ffffff',
       textSecondary: '#FFFFFF80',
       hover: '#F4C03800',
+      error: '#FF4510',
     },
     extend: {
       backgroundImage: {
