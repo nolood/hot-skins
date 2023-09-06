@@ -2,7 +2,6 @@ import { FC } from 'react';
 import styles from './Button.module.scss';
 
 interface IButtonProps {
-  title: string;
   icon?: JSX.Element;
   variant?: 'primary' | 'secondary';
   disabled?: boolean;
@@ -10,10 +9,10 @@ interface IButtonProps {
   onClick?: () => void;
   className?: string;
   type?: 'button' | 'submit' | 'reset';
+  children?: React.ReactNode;
 }
 
 const Button: FC<IButtonProps> = ({
-  title,
   icon,
   variant = 'primary',
   disabled,
@@ -21,6 +20,7 @@ const Button: FC<IButtonProps> = ({
   onClick,
   className,
   type,
+  children,
 }) => {
   const combineClassNames = () => {
     const defaultClassName =
@@ -29,7 +29,7 @@ const Button: FC<IButtonProps> = ({
       return `${defaultClassName} bg-accent text-main ${styles.primaryEffects} ${className}`;
     }
     if (variant === 'secondary' && !disabled) {
-      return `${defaultClassName} bg-transparent text-accent border-solid border-accent border ${styles.secondaryEffects} ${className}`;
+      return `${defaultClassName} bg-transparent text-accent shadow-outline ${styles.secondaryEffects} ${className}`;
     }
     if (variant === 'primary' && disabled) {
       return `${defaultClassName} bg-disabled text-textSecondary cursor-not-allowed ${className}`;
@@ -43,7 +43,7 @@ const Button: FC<IButtonProps> = ({
   return (
     <button onClick={onClick} disabled={disabled} className={combineClassNames()} type={type}>
       {icon}
-      {title}
+      {children}
       {info}
     </button>
   );

@@ -51,7 +51,9 @@ const LoginForm = () => {
         value={password}
       />
       {errorMessage && <span className='text-error'>{errorMessage}</span>}
-      <Button title='Авторизоваться' className='py-3' type='submit' />
+      <Button className='py-3' type='submit'>
+        Авторизоваться
+      </Button>
     </form>
   );
 };

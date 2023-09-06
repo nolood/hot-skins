@@ -17,6 +17,9 @@ export default {
       backgroundImage: {
         'home-bg': "url('/src/shared/assets/home-bg.jpg')",
       },
+      boxShadow: {
+        outline: '0px 0px 0px 3px rgba(244, 192, 56, 1)',
+      },
     },
   },
   plugins: [],

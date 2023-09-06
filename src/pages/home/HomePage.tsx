@@ -11,12 +11,9 @@ const HomePage = () => {
           <h1 className='text-textMain text-6xl font-bold w-[700px] mb-10'>
             Открывайте кейсы играйте в мини-игры, а также многое другое
           </h1>
-          <Button
-            title='Зарегистрироваться'
-            className='py-5 px-12'
-            onClick={() => setIsOpen(true)}
-            variant='primary'
-          />
+          <Button className='py-5 px-12' onClick={() => setIsOpen(true)} variant='primary'>
+            Зарегистрироваться
+          </Button>
           <Modal open={isOpen} setOpen={setIsOpen}>
             <RegisterScreen />
           </Modal>

@@ -1,5 +1,5 @@
 import { $isAuth, $user } from '@/shared/api/auth';
-import { Button, Logo, Modal } from '@/shared/ui';
+import { Button, Dropdown, Logo, Modal } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
 import { useStore } from 'effector-react/effector-react.mjs';
 import { useState } from 'react';
@@ -31,17 +31,16 @@ const Header = () => {
           </div>
           <div className='flex items-center'>
             {!isAuth ? (
-              <Button
-                onClick={() => setIsOpen(true)}
-                title='Войти'
-                className='ml-8 text-lg py-2 px-6'
-              />
+              <Button onClick={() => setIsOpen(true)} className='ml-8 text-lg py-2 px-6'>
+                Войти
+              </Button>
             ) : (
-              <Button
-                className='ml-8 text-lg py-2 px-6'
-                title={`${user?.username} | ${user?.balance}$`}
-                variant='secondary'
-              />
+              <Dropdown>
+                <Button className='ml-8 text-lg py-2 px-6 flex items-center' variant='secondary'>
+                  {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-2'></div>{' '}
+                  {user?.balance}$
+                </Button>
+              </Dropdown>
             )}
           </div>
         </div>

@@ -61,7 +61,9 @@ const RegForm = () => {
         value={repeatPassword}
       />
       {errorMessage && <span className='text-error'>{errorMessage}</span>}
-      <Button title='Зарегистрироваться' className='py-3' type='submit' />
+      <Button className='py-3' type='submit'>
+        Зарегистрироваться
+      </Button>
     </form>
   );
 };
