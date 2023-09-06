@@ -8,7 +8,7 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <section className='section h-[76px] bg-substrate'>
-      <div className='container absolute left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
+      <div className='container fixed left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
             <div className='flex items-center gap-4 '>
