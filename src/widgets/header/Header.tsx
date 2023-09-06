@@ -1,14 +1,17 @@
-import { Button, Logo, Modal, Russia } from '@/shared/ui';
+import { $isAuth, $user } from '@/shared/api/auth';
+import { Button, Logo, Modal } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
-import { Down } from '@icon-park/react';
+import { useStore } from 'effector-react/effector-react.mjs';
 import { useState } from 'react';
 import { LoginScreen } from '..';
 
 const Header = () => {
+  const isAuth = useStore($isAuth);
+  const user = useStore($user);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   return (
     <section className='section h-[76px] bg-substrate'>
-      <div className='container fixed left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
+      <div className='container fixed left-1/2 -translate-x-1/2 top-0 backdrop-blur-md z-10'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
             <div className='flex items-center gap-4 '>
@@ -27,16 +30,19 @@ const Header = () => {
             </ul>
           </div>
           <div className='flex items-center'>
-            <div className='flex items-center text-textMain uppercase gap-4 text-lg rounded-3xl border-solid border border-borderMain py-1 px-4 font-regular'>
-              <Russia />
-              ru
-              <Down className='text-textSecondary' />
-            </div>
-            <Button
-              onClick={() => setIsOpen(true)}
-              title='Войти'
-              className='ml-8 text-lg py-2 px-6'
-            />
+            {!isAuth ? (
+              <Button
+                onClick={() => setIsOpen(true)}
+                title='Войти'
+                className='ml-8 text-lg py-2 px-6'
+              />
+            ) : (
+              <Button
+                className='ml-8 text-lg py-2 px-6'
+                title={`${user?.username} | ${user?.balance}$`}
+                variant='secondary'
+              />
+            )}
           </div>
         </div>
         <Modal open={isOpen} setOpen={setIsOpen}>

@@ -1,8 +1,10 @@
 import axios from 'axios';
+import { getToken } from '../lib';
+const token = getToken();
 
 export const api = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}`,
-  headers: { Authorization: 'Bearer token' },
+  headers: { Authorization: `Bearer ${token}` },
 });
 
 api.interceptors.request.use(

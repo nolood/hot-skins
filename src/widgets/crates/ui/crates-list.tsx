@@ -6,12 +6,13 @@ import { useEffect } from 'react';
 
 const CratesList = () => {
   const data = useStore($crates).data;
-  console.log(data);
   useEffect(() => {
-    fetchCrates();
+    if (data.length === 0) {
+      fetchCrates();
+    }
   }, []);
   return (
-    <div className='flex flex-wrap justify-between gap-6 py-[100px]'>
+    <div className='flex flex-wrap justify-between gap-32 py-[100px]'>
       {data.map((item) => (
         <CrateCard
           title={item.name}
