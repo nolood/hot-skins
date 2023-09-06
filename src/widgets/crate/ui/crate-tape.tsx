@@ -1,19 +1,34 @@
-import CrateBtn from '@/feature/ui/crate/crate-btn';
+import { getRandomSkin } from '@/feature/lib/getRandomSkin';
 import CrateSkinCard from '@/feature/ui/crate/crate-skin-card';
 import { shuffleArray } from '@/shared/lib/shuffleArray';
-import { $currentCrate, CrateContains } from '@/shared/store/crates';
-import { useStore } from 'effector-react';
+import { CrateContains } from '@/shared/store/crates';
+import { Button } from '@/shared/ui';
+import { useRef } from 'react';
+import styles from '../styles/Triangle.module.scss';
 
-const CrateTape = () => {
-  const currentCrate = useStore($currentCrate);
+const CrateTape = ({ items }: { items?: CrateContains[] }) => {
+  const skin = useRef<HTMLDivElement | null>(null);
+
+  if (!items) {
+    return null;
+  }
+
+  const result = getRandomSkin({ count: items.length * 2 });
+  const handleScrollToElement = () => {
+    skin.current?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+  };
+
   return (
     <div className='w-full flex flex-col items-center'>
-      <div className='flex gap-2 overflow-hidden w-full'>
-        {shuffleArray(currentCrate?.contains as CrateContains[]).map((item) => (
-          <CrateSkinCard item={item} key={item.id} />
+      <div className={styles.triangle}></div>
+      <div className='flex gap-6 overflow-hidden w-full mb-4'>
+        {shuffleArray(items).map((item, index) => (
+          <CrateSkinCard key={item.id} item={item} ref={result === index ? skin : null} />
         ))}
       </div>
-      <CrateBtn />
+      <Button onClick={handleScrollToElement} className='py-2 px-6 mt-12'>
+        Открыть
+      </Button>
     </div>
   );
 };

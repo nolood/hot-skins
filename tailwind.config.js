@@ -27,6 +27,7 @@ export default {
         mythical: '0px 0px 20px 8px #8533ED',
         classified: '0px 0px 20px 8px #CF309C',
         covert: '0px 0px 20px 8px #ED422B',
+        accent: '0px 0px 20px 8px #F4C038',
       },
     },
   },

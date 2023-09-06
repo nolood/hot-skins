@@ -13,5 +13,8 @@ export const shuffleArray = (array: CrateContains[]) => {
     [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
   }
 
-  return shuffledArray;
+  return [
+    ...shuffledArray,
+    ...shuffledArray.map((item, index) => ({ ...item, id: String(index) })),
+  ];
 };
