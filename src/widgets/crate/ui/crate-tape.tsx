@@ -1,30 +1,41 @@
+import { findLastIndexOfObjectInArray } from '@/feature/lib/findLastIndexOfSkin';
 import { getRandomSkin } from '@/feature/lib/getRandomSkin';
 import CrateSkinCard from '@/feature/ui/crate/crate-skin-card';
-import { shuffleArray } from '@/shared/lib/shuffleArray';
 import { CrateContains } from '@/shared/store/crates';
 import { Button } from '@/shared/ui';
-import { useRef } from 'react';
+import { motion, useAnimation } from 'framer-motion';
 import styles from '../styles/Triangle.module.scss';
 
-const CrateTape = ({ items }: { items?: CrateContains[] }) => {
-  const skin = useRef<HTMLDivElement | null>(null);
+const CrateTape = ({ items, shuffleItems }: { items?: CrateContains[]; shuffleItems: any[] }) => {
+  const controls = useAnimation();
 
-  if (!items) {
+  if (!shuffleItems || !items) {
     return null;
   }
 
-  const result = getRandomSkin({ count: items.length * 2 });
   const handleScrollToElement = () => {
-    skin.current?.scrollIntoView({ behavior: 'smooth', inline: 'center' });
+    const skin = getRandomSkin({ items }).id;
+    const skinIndex = findLastIndexOfObjectInArray(shuffleItems, skin);
+    const offset = -250 * (skinIndex - 2.2);
+    console.log(shuffleItems[skinIndex]);
+    controls.start({
+      translateX: offset,
+    });
   };
 
   return (
     <div className='w-full flex flex-col items-center'>
       <div className={styles.triangle}></div>
-      <div className='flex gap-6 overflow-hidden w-full mb-4'>
-        {shuffleArray(items).map((item, index) => (
-          <CrateSkinCard key={item.id} item={item} ref={result === index ? skin : null} />
-        ))}
+      <div className='w-full overflow-hidden'>
+        <motion.div
+          animate={controls}
+          transition={{ duration: 10, type: 'tween' }}
+          className='flex mb-4'
+        >
+          {shuffleItems.map((item) => (
+            <CrateSkinCard key={item.uniqueId} item={item} />
+          ))}
+        </motion.div>
       </div>
       <Button onClick={handleScrollToElement} className='py-2 px-6 mt-12'>
         Открыть

@@ -1,4 +1,5 @@
 import { fetchCrateFx } from '@/feature/api/cratesApi';
+import { shuffleArray } from '@/shared/lib/shuffleArray';
 import { $currentCrate } from '@/shared/store/crates';
 import { Button } from '@/shared/ui';
 import { CrateTape } from '@/widgets/crate/ui';
@@ -14,6 +15,8 @@ const CratePage = () => {
     fetchCrateFx(params.id as string);
   }, []);
 
+  const shuffleItems = shuffleArray(currentCrate?.contains || []);
+
   return (
     <section className='section min-h-[calc(100vh-76px-48px)] bg-main'>
       <div className='container'>
@@ -21,7 +24,7 @@ const CratePage = () => {
           Назад
         </Button>
         <div className='py-6'>
-          <CrateTape items={currentCrate?.contains} />
+          <CrateTape items={currentCrate?.contains} shuffleItems={shuffleItems} />
         </div>
       </div>
     </section>
