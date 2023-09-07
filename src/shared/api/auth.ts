@@ -3,6 +3,7 @@ import { register } from '@/feature/api/register';
 import { createEffect, createStore } from 'effector';
 import { createEvent } from 'effector/compat';
 import { openCrateFx } from '../lib/openCrate';
+import { sellSkinFx } from '../lib/sellSkin';
 import { api } from './api';
 
 type UserStore = {
@@ -37,6 +38,11 @@ export const fetchUserFx = createEffect<void, UserStore>(async () => {
 $user
   .on(fetchUserFx.doneData, (_, user) => ({ ...user }))
   .on(resetUser, () => null)
-  .on(openCrateFx.doneData, (_, payload) => ({ ...payload }));
+  .on(openCrateFx.doneData, (_, payload) => ({ ...payload }))
+  .on(sellSkinFx.doneData, (state, payload) => {
+    if (state) {
+      return { ...state, balance: payload.user.balance };
+    }
+  });
 $token.on(register.doneData, (_, payload) => payload.token);
 $token.on(login.doneData, (_, payload) => payload.token);

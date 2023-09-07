@@ -1,4 +1,5 @@
 import { $isAuth, $user, fetchUserFx } from '@/shared/api/auth';
+import LocaleNumbers from '@/shared/lib/localeNumber';
 import { $loginModal, toggleLoginModal } from '@/shared/store/modal';
 import { Button, Dropdown, Logo, Modal } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
@@ -55,7 +56,7 @@ const Header = () => {
                 ) : (
                   <>
                     {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-4'></div>
-                    {user?.balance}$
+                    {LocaleNumbers({ currencyIcon: true, number: user?.balance as number })}
                   </>
                 )}
               </Dropdown>

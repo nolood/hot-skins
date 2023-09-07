@@ -1,8 +1,11 @@
+import { INVENTORY_ROUTE } from '@/app/routes/paths';
 import { logout } from '@/shared/lib/logout';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Dropdown = ({ children }: { children: React.ReactNode }) => {
+  const navigate = useNavigate();
   return (
     <div className=''>
       <Menu as='div' className='relative inline-block text-left'>
@@ -25,6 +28,7 @@ const Dropdown = ({ children }: { children: React.ReactNode }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={() => navigate(INVENTORY_ROUTE)}
                     className={`${
                       active ? 'bg-violet-500 text-accent' : 'text-textMain'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm backdrop-blur-xl`}

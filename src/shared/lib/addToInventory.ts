@@ -6,7 +6,6 @@ export const addToInventory = createEffect<{ skinId: string; crateId: string }, 
   async (params) => {
     try {
       const response = await api.post(`/inventories/add/${params.skinId}/crate/${params.crateId}`);
-      console.log(response.data);
       return response.data;
     } catch (e) {
       console.error(e);
