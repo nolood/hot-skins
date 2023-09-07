@@ -1,17 +1,16 @@
-import { CRATES_ROUTE } from '@/app/routes/paths';
 import { register } from '@/feature/api/register';
 import { simpleValidationFields } from '@/feature/lib/simpleValidationFields';
-import { setIsAuth } from '@/shared/api/auth';
+import { setTokenToApi } from '@/shared/api/api';
+import { fetchUserFx, setIsAuth } from '@/shared/api/auth';
+import { toggleRegModal } from '@/shared/store/modal';
 import { Button, Input } from '@/shared/ui';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const RegForm = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [repeatPassword, setRepeatPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,9 +18,12 @@ const RegForm = () => {
     if (isValid.type === 'error') {
       setErrorMessage(isValid.message);
     } else {
-      if (await register({ username, password })) {
+      const isReg = await register({ username, password });
+      if (isReg.auth) {
+        setTokenToApi(isReg.token);
+        await fetchUserFx();
+        toggleRegModal();
         setIsAuth(true);
-        navigate(CRATES_ROUTE);
       }
     }
   };

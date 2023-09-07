@@ -1,3 +1,4 @@
+import { setTokenToApi } from '@/shared/api/api';
 import { $isAuth, fetchUserFx, setIsAuth } from '@/shared/api/auth';
 import { getToken } from '@/shared/lib';
 import { useStore } from 'effector-react';
@@ -10,8 +11,9 @@ const AppRouter = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchUserFx();
     const token = getToken();
+    setTokenToApi(token || undefined);
+    fetchUserFx();
     if (token) {
       setIsAuth(true);
     } else {

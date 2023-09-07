@@ -9,6 +9,10 @@
   font-family: 'Rubik', sans-serif;
 }
 
+html {
+  @apply bg-main;
+}
+
 .section {
   width: 100%;
 }
@@ -17,4 +21,16 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
+}
+
+body::-webkit-scrollbar {
+  width: 6px; /* ширина всей полосы прокрутки */
+}
+
+body::-webkit-scrollbar-track {
+  @apply bg-main;
+}
+
+body::-webkit-scrollbar-thumb {
+  @apply bg-accent border-solid border border-accent rounded-3xl;
 }

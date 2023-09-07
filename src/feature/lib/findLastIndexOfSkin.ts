@@ -1,10 +1,10 @@
 import { CrateContains } from '@/shared/store/crates';
 
-interface Items extends CrateContains {
+export interface CrateContainsUniq extends CrateContains {
   uniqueId: string;
 }
 
-export const findLastIndexOfObjectInArray = (items: Items[], id: string) => {
+export const findLastIndexOfObjectInArray = (items: CrateContainsUniq[], id: string) => {
   if (!Array.isArray(items)) {
     return -1;
   }

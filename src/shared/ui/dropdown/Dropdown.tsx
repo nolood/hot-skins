@@ -1,3 +1,4 @@
+import { logout } from '@/shared/lib/logout';
 import { Menu, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 
@@ -37,6 +38,7 @@ const Dropdown = ({ children }: { children: React.ReactNode }) => {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={logout}
                     className={`${
                       active ? 'bg-violet-500 text-accent' : 'text-textMain'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm backdrop-blur-xl`}

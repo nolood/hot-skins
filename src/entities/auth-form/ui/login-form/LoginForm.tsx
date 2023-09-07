@@ -1,16 +1,15 @@
-import { CRATES_ROUTE } from '@/app/routes/paths';
 import { login } from '@/feature/api/login';
 import { simpleValidationFields } from '@/feature/lib/simpleValidationFields';
-import { setIsAuth } from '@/shared/api/auth';
+import { setTokenToApi } from '@/shared/api/api';
+import { fetchUserFx, setIsAuth } from '@/shared/api/auth';
+import { toggleLoginModal } from '@/shared/store/modal';
 import { Button, Input } from '@/shared/ui';
 import { ChangeEvent, FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -18,9 +17,12 @@ const LoginForm = () => {
     if (isValid.type === 'error') {
       setErrorMessage(isValid.message);
     } else {
-      if (await login({ username, password })) {
+      const isLogin = await login({ username, password });
+      if (isLogin.auth) {
+        setTokenToApi(isLogin.token);
+        await fetchUserFx();
+        toggleLoginModal();
         setIsAuth(true);
-        navigate(CRATES_ROUTE);
       } else {
         setErrorMessage('Неверный логин или пароль');
       }

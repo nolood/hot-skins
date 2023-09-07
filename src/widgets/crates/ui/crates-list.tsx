@@ -6,22 +6,24 @@ import { useEffect } from 'react';
 
 const CratesList = () => {
   const data = useStore($crates).data;
+  const isLoading = useStore(fetchCratesFx.pending);
   useEffect(() => {
-    if (data.length === 0) {
-      fetchCratesFx();
-    }
+    fetchCratesFx();
   }, []);
   return (
     <div className='flex flex-wrap justify-between gap-32 py-[100px]'>
-      {data.map((item) => (
-        <CrateCard
-          title={item.name}
-          price={item.price}
-          id={item.id}
-          key={item.id}
-          image={item.image}
-        />
-      ))}
+      {!isLoading &&
+        data?.map((item) => (
+          <CrateCard
+            title={item.name}
+            price={item.price}
+            id={item.id}
+            key={item.id}
+            image={item.image}
+          />
+        ))}
+
+      {isLoading && <>Loading</>}
     </div>
   );
 };

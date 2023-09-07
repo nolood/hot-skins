@@ -2,7 +2,7 @@ import { fetchCrateFx } from '@/feature/api/cratesApi';
 import { shuffleArray } from '@/shared/lib/shuffleArray';
 import { $currentCrate } from '@/shared/store/crates';
 import { Button } from '@/shared/ui';
-import { CrateTape } from '@/widgets/crate/ui';
+import { CrateSkinsList, CrateTape } from '@/widgets/crate/ui';
 import { useStore } from 'effector-react/compat';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -26,6 +26,7 @@ const CratePage = () => {
         <div className='py-6'>
           <CrateTape items={currentCrate?.contains} shuffleItems={shuffleItems} />
         </div>
+        <CrateSkinsList items={currentCrate?.contains} />
       </div>
     </section>
   );

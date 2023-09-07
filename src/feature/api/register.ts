@@ -4,13 +4,15 @@ import { AuthData } from '@/shared/types/AuthData';
 import { AxiosError } from 'axios';
 import { createEffect } from 'effector/effector.mjs';
 
-export const register = createEffect<AuthData, boolean, AxiosError>(async (params) => {
-  try {
-    const response = await api.post('/auth/registration', { ...params });
-    saveToken(response.data.token);
-    return true;
-  } catch (e) {
-    console.error(e);
-    return false;
-  }
-});
+export const register = createEffect<AuthData, { auth: boolean; token?: string }, AxiosError>(
+  async (params) => {
+    try {
+      const response = await api.post('/auth/registration', { ...params });
+      saveToken(response.data.token);
+      return { auth: true, token: response.data.token };
+    } catch (e) {
+      console.error(e);
+      return { auth: false };
+    }
+  },
+);

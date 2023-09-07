@@ -10,7 +10,7 @@ export const shuffleArray = (array: CrateContains[]) => {
 
   for (let i = 0; i < array.length; i++) {
     if (array[i].rarity !== 'сovert' && array[i]) {
-      for (let j = 0; j < getRandomIndex(50); j++) {
+      for (let j = 0; j < getRandomIndex(20); j++) {
         shuffledArray.push(array[i]);
       }
     } else {
