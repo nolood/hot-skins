@@ -36,10 +36,8 @@ const Header = () => {
               </Button>
             ) : (
               <Dropdown>
-                <Button className='ml-8 text-lg py-2 px-6 flex items-center' variant='secondary'>
-                  {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-2'></div>{' '}
-                  {user?.balance}$
-                </Button>
+                {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-4'></div>{' '}
+                {user?.balance}$
               </Dropdown>
             )}
           </div>

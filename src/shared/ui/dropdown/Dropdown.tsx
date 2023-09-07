@@ -6,7 +6,9 @@ const Dropdown = ({ children }: { children: React.ReactNode }) => {
     <div className=''>
       <Menu as='div' className='relative inline-block text-left'>
         <div>
-          <Menu.Button>{children}</Menu.Button>
+          <Menu.Button className='flex justify-between rounded-[50px] font-medium text-lg ease-linear duration-300 bg-transparent text-accent shadow-outline ml-8 text-lg py-2 px-6 items-center hover:bg-accent hover:text-main'>
+            {children}
+          </Menu.Button>
         </div>
         <Transition
           as={Fragment}

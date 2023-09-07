@@ -1,5 +1,5 @@
 import { CrateCard } from '@/entities/crate-card/ui';
-import { fetchCrates } from '@/feature/api/cratesApi';
+import { fetchCratesFx } from '@/feature/api/cratesApi';
 import { $crates } from '@/shared/store/crates';
 import { useStore } from 'effector-react';
 import { useEffect } from 'react';
@@ -8,7 +8,7 @@ const CratesList = () => {
   const data = useStore($crates).data;
   useEffect(() => {
     if (data.length === 0) {
-      fetchCrates();
+      fetchCratesFx();
     }
   }, []);
   return (

@@ -1,4 +1,6 @@
+import { CRATES_ROUTE } from '@/app/routes/paths';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './../styles/crate.module.scss';
 
 interface ICrateProps {
@@ -9,12 +11,16 @@ interface ICrateProps {
 }
 
 const Crate: FC<ICrateProps> = ({ title, id, price, image }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(CRATES_ROUTE + `/${id}`);
+  };
   return (
     <div
       className={
         'flex flex-col items-center w-[200px] justify-between rounded-xl py-2 ' + styles.crate
       }
-      key={id}
+      onClick={handleClick}
     >
       <img className='w-[200px] h-[130px]' src={image} alt={title} />
       <span className='text-center text-textMain my-4'>{title}</span>

@@ -12,6 +12,10 @@ export default {
       textSecondary: '#FFFFFF80',
       hover: '#F4C03800',
       error: '#FF4510',
+      rare: '#275CE4',
+      mythical: '#8533ED',
+      classified: '#CF309C',
+      covert: '#ED422B',
     },
     extend: {
       backgroundImage: {
@@ -19,6 +23,10 @@ export default {
       },
       boxShadow: {
         outline: '0px 0px 0px 3px rgba(244, 192, 56, 1)',
+        rare: '0px 0px 20px 8px #275CE4',
+        mythical: '0px 0px 20px 8px #8533ED',
+        classified: '0px 0px 20px 8px #CF309C',
+        covert: '0px 0px 20px 8px #ED422B',
       },
     },
   },
