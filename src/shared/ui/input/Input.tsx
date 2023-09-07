@@ -1,17 +1,18 @@
-import { FC } from 'react';
+import { FC, HTMLProps } from 'react';
 
-interface InputProps {
+interface InputProps extends HTMLProps<HTMLInputElement> {
   label?: string;
   name: string;
   placeholder?: string;
   type?: string;
 }
 
-const Input: FC<InputProps> = ({ label, name, type, placeholder }) => {
+const Input: FC<InputProps> = ({ label, name, type, placeholder, ...rest }) => {
   return (
     <div className='flex flex-col'>
       {label}
       <input
+        {...rest}
         type={type}
         name={name}
         placeholder={placeholder}

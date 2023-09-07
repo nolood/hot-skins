@@ -1,14 +1,22 @@
-import { Button, Logo, Modal, Russia } from '@/shared/ui';
+import { $isAuth, $user, fetchUserFx } from '@/shared/api/auth';
+import LocaleNumbers from '@/shared/lib/localeNumber';
+import { $loginModal, toggleLoginModal } from '@/shared/store/modal';
+import { Button, Dropdown, Logo, Modal } from '@/shared/ui';
 import { NavbarItems } from '@/widgets/lib/consts/NavbarItems';
-import { Down } from '@icon-park/react';
-import { useState } from 'react';
-import LoginScreen from '../login-screen/ui/LoginScreen';
+import { useStore } from 'effector-react/effector-react.mjs';
+import { Link } from 'react-router-dom';
+import { LoginScreen } from '..';
+import { NavbarItemsProtected } from '../lib/consts/NavbarItemsProtected';
 
 const Header = () => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const isOpen = useStore($loginModal);
+  const isAuth = useStore($isAuth);
+  const user = useStore($user);
+  const isLoading = useStore(fetchUserFx.pending);
+  const setIsOpen = toggleLoginModal;
   return (
     <section className='section h-[76px] bg-substrate'>
-      <div className='container absolute left-1/2 -translate-x-1/2 top-0 backdrop-blur-md'>
+      <div className='container fixed left-1/2 -translate-x-1/2 top-0 backdrop-blur-md z-10'>
         <div className='py-4 w-full flex justify-between'>
           <div className='flex gap-32'>
             <div className='flex items-center gap-4 '>
@@ -19,24 +27,40 @@ const Header = () => {
               </h2>
             </div>
             <ul className='flex items-center gap-10'>
-              {NavbarItems.map(({ title, id }) => (
+              {NavbarItems.map(({ title, id, path }) => (
                 <li key={id} className='text-textMain font-medium'>
-                  <span>{title}</span>
+                  <Link to={path}>{title}</Link>
                 </li>
               ))}
+              {isAuth &&
+                NavbarItemsProtected.map(({ title, id, path }) => (
+                  <li key={id} className='text-textMain font-medium'>
+                    <Link to={path}>{title}</Link>
+                  </li>
+                ))}
             </ul>
           </div>
           <div className='flex items-center'>
-            <div className='flex items-center text-textMain uppercase gap-4 text-lg rounded-3xl border-solid border border-borderMain py-1 px-4 font-regular'>
-              <Russia />
-              ru
-              <Down className='text-textSecondary' />
-            </div>
-            <Button
-              onClick={() => setIsOpen(true)}
-              title='Войти'
-              className='ml-8 text-lg py-2 px-6'
-            />
+            {!isAuth ? (
+              <Button onClick={() => toggleLoginModal()} className='ml-8 text-lg py-2 px-6'>
+                Войти
+              </Button>
+            ) : (
+              <Dropdown>
+                {isLoading ? (
+                  <>
+                    <span>.......</span>
+                    <div className='h-[15px] w-[3px] bg-accent mx-4'></div>
+                    <span>.......</span>
+                  </>
+                ) : (
+                  <>
+                    {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-4'></div>
+                    {LocaleNumbers({ currencyIcon: true, number: user?.balance as number })}
+                  </>
+                )}
+              </Dropdown>
+            )}
           </div>
         </div>
         <Modal open={isOpen} setOpen={setIsOpen}>

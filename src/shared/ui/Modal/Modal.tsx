@@ -4,18 +4,19 @@ import { FC, Fragment } from 'react';
 
 interface ModalProps {
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: () => void;
   children: React.ReactNode;
+  className?: string;
 }
 
-const Modal: FC<ModalProps> = ({ open, setOpen, children }) => {
+const Modal: FC<ModalProps> = ({ open, setOpen, children, className }) => {
   return (
     <Transition as={Fragment} appear show={open}>
       <Dialog
-        className='fixed left-0 top-0 h-screen w-screen z-30'
+        className={className ? className : 'fixed left-0 top-0 h-screen w-screen z-30'}
         as='div'
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={() => setOpen()}
       >
         <Transition.Child
           as={Fragment}
@@ -30,7 +31,7 @@ const Modal: FC<ModalProps> = ({ open, setOpen, children }) => {
             {children}
             <button
               className='absolute top-4 right-4 w-7 h-7 bg-disabled rounded-full flex items-center justify-center text-textMain text-sm'
-              onClick={() => setOpen(false)}
+              onClick={() => setOpen()}
             >
               <Close />
             </button>

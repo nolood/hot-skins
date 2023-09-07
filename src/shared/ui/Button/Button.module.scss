@@ -1,13 +1,13 @@
 .primaryEffects {
   &:hover,
   &:focus {
-    @apply bg-hover text-accent outline-accent outline-2;
+    @apply bg-hover text-accent shadow-outline;
   }
 }
 
 .secondaryEffects {
   &:hover,
   &:focus {
-    @apply bg-accent text-main border-none;
+    @apply bg-accent text-main;
   }
 }
