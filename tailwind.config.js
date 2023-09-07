@@ -16,6 +16,7 @@ export default {
       mythical: '#8533ED',
       classified: '#CF309C',
       covert: '#ED422B',
+      invis: '#F4C03800',
     },
     extend: {
       backgroundImage: {
@@ -28,6 +29,7 @@ export default {
         classified: '0px 0px 20px 8px #CF309C',
         covert: '0px 0px 20px 8px #ED422B',
         accent: '0px 0px 20px 8px #F4C038',
+        shadow: '0px 0px 8px 0px',
       },
     },
   },

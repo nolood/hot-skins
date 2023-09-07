@@ -1,6 +1,7 @@
 import { CrateCard } from '@/entities/crate-card/ui';
 import { fetchCratesFx } from '@/feature/api/cratesApi';
 import { $crates } from '@/shared/store/crates';
+import { Loader } from '@/shared/ui';
 import { useStore } from 'effector-react';
 import { useEffect } from 'react';
 
@@ -23,7 +24,11 @@ const CratesList = () => {
           />
         ))}
 
-      {isLoading && <>Loading</>}
+      {isLoading && (
+        <div className='flex justify-center items-center w-full h-full'>
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

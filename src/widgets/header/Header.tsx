@@ -55,7 +55,7 @@ const Header = () => {
                 ) : (
                   <>
                     {user?.username} <div className='h-[15px] w-[3px] bg-accent mx-4'></div>
-                    {user?.balance}
+                    {user?.balance}$
                   </>
                 )}
               </Dropdown>
