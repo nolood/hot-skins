@@ -1,13 +1,16 @@
 import { CrateContainsUniq, findLastIndexOfObjectInArray } from '@/feature/lib/findLastIndexOfSkin';
 import { getRandomSkin } from '@/feature/lib/getRandomSkin';
 import CrateSkinCard from '@/feature/ui/crate/crate-skin-card';
+import { $user } from '@/shared/api/auth';
+import { addToInventory } from '@/shared/lib/addToInventory';
+import { openCrateFx } from '@/shared/lib/openCrate';
 import sound from '@/shared/sounds/crate.mp3';
 import { $currentCrate, CrateContains, setCrateResult } from '@/shared/store/crates';
 import { toggleResultModal } from '@/shared/store/modal';
 import { Button } from '@/shared/ui';
 import { useStore } from 'effector-react';
 import { motion, useAnimation } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Triangle.module.scss';
 
 const CrateTape = ({
@@ -21,18 +24,28 @@ const CrateTape = ({
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const controls = useAnimation();
   const currentCrate = useStore($currentCrate);
+  const user = useStore($user);
+
+  useEffect(() => {
+    if (user && currentCrate) {
+      setDisable(user.balance <= currentCrate.price);
+    }
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!shuffleItems || !items) {
     return null;
   }
 
-  const handleScrollToElement = () => {
+  const handleScrollToElement = async () => {
     audioRef.current?.play();
     setDisable(true);
     const skin = getRandomSkin({ items }).id;
     const skinIndex = findLastIndexOfObjectInArray(shuffleItems, skin);
     const offset = -250 * (skinIndex - 2.2);
-    setCrateResult(shuffleItems[skinIndex]);
+    setCrateResult({ ...shuffleItems[skinIndex], crate: String(currentCrate?.id) });
+    await openCrateFx({ id: currentCrate?.id || '' });
+    await addToInventory({ skinId: skin, crateId: currentCrate?.id || '' });
     controls.start({
       translateX: offset,
     });
@@ -43,7 +56,7 @@ const CrateTape = ({
     setDisable(false);
     setTimeout(() => {
       controls.set({ translateX: 0 });
-    }, 1000);
+    }, 1500);
   };
 
   return (
@@ -66,7 +79,7 @@ const CrateTape = ({
         <p>Your browser does not support the audio element.</p>
       </audio>
       <Button disabled={disable} onClick={handleScrollToElement} className='py-2 px-6 mt-12'>
-        Открыть ( {currentCrate?.price}$ )
+        Открыть - {currentCrate?.price}$
       </Button>
     </div>
   );

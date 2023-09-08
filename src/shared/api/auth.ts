@@ -1,8 +1,9 @@
+import { login } from '@/feature/api/login';
 import { register } from '@/feature/api/register';
 import { createEffect, createStore } from 'effector';
 import { createEvent } from 'effector/compat';
+import { openCrateFx } from '../lib/openCrate';
 import { api } from './api';
-import { login } from '@/feature/api/login';
 
 type UserStore = {
   id: number;
@@ -33,6 +34,9 @@ export const fetchUserFx = createEffect<void, UserStore>(async () => {
   }
 });
 
-$user.on(fetchUserFx.doneData, (_, user) => ({ ...user })).on(resetUser, () => null);
+$user
+  .on(fetchUserFx.doneData, (_, user) => ({ ...user }))
+  .on(resetUser, () => null)
+  .on(openCrateFx.doneData, (_, payload) => ({ ...payload }));
 $token.on(register.doneData, (_, payload) => payload.token);
 $token.on(login.doneData, (_, payload) => payload.token);

@@ -22,11 +22,15 @@ type CratesStore = {
   data: Crate[];
 };
 
-export const setCrateResult = createEvent<null | CrateContains>();
+export interface InventoryItem extends CrateContains {
+  crate: string;
+}
+
+export const setCrateResult = createEvent<null | InventoryItem>();
 
 export const $currentCrate = createStore<Crate | null>(null);
 
-export const $crateResult = createStore<null | CrateContains>(null);
+export const $crateResult = createStore<null | InventoryItem>(null);
 
 export const $crates = createStore<CratesStore>({ data: [] });
 
