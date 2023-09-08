@@ -24,6 +24,7 @@ type CratesStore = {
 
 export interface InventoryItem extends CrateContains {
   crate: string;
+  count: number;
 }
 
 export const setCrateResult = createEvent<null | InventoryItem>();

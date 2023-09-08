@@ -15,8 +15,8 @@ const InventoryList = () => {
 
   const addons = ({ item }: { item: InventoryItem }) => (
     <div className='flex flex-col items-center gap-4'>
-      <span className='text-accent'>
-        {LocaleNumbers({ currencyIcon: true, number: item.price })}
+      <span className='text-accent flex gap-2'>
+        {LocaleNumbers({ currencyIcon: true, number: item.price })}x {item.count}
       </span>
       <Button
         onClick={() => sellSkinFx({ skinId: item.id, crateId: item.crate })}
